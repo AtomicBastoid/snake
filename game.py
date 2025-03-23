@@ -46,28 +46,6 @@ class Snake:
     def add_body(self):
         self.Body.append(self.Body[-1])
 
-    # @property
-    # def headColor(self):
-    #     return self._headColor
-
-    # @headColor.setter
-    # def head(self, head):
-    #     if head not in COLOR_OPTIONS:
-    #         print("Invalid color for snake head")
-    #         sys.exit(1)
-    #     self._headColor = head
-
-    # @property
-    # def bodyColor(self):
-    #     return self._bodyColor
-    
-    # @bodyColor.setter
-    # def body(self, body):
-    #     if body not in COLOR_OPTIONS:
-    #         print("Invalid color for snake body")
-    #         sys.exit(1)
-    #     self._bodyColor = body
-
 class Food:
     global food_choices
     def __init__(self):

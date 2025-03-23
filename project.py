@@ -32,16 +32,16 @@ COLOR_OPTIONS = ['White', 'Green', 'Red', 'Blue']
 pygame.init()
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 # load background image
-background_image = pygame.image.load("bg_image.jpg")
+background_image = pygame.image.load("assests/bg_image.jpg")
 clock = pygame.time.Clock()
 font = pygame.font.Font("font/GallaeciaForte.ttf", 30)
 name_font = pygame.font.Font("font/GallaeciaForte.ttf", 15)
 game_over_font = pygame.font.Font("font/GallaeciaForte.ttf", 50)
 
-frog_image = pygame.image.load('frog.png').convert_alpha()
-mouse_image = pygame.image.load('mouse.png').convert_alpha()
-insect_image = pygame.image.load('insect.png').convert_alpha()
-bird_image = pygame.image.load('bird.png').convert_alpha()
+frog_image = pygame.image.load('assests/frog.png').convert_alpha()
+mouse_image = pygame.image.load('assests/mouse.png').convert_alpha()
+insect_image = pygame.image.load('assests/insect.png').convert_alpha()
+bird_image = pygame.image.load('assests/bird.png').convert_alpha()
 food_choices = [frog_image, mouse_image, insect_image, bird_image]
 
 
@@ -73,7 +73,7 @@ class Snake: # Donot Touch
         self.body_tl = pygame.image.load('snake/body_tl.png').convert_alpha()
         self.body_br = pygame.image.load('snake/body_br.png').convert_alpha()
         self.body_bl = pygame.image.load('snake/body_bl.png').convert_alpha()
-        self.crunch_sound = pygame.mixer.Sound('crunch.wav')
+        self.crunch_sound = pygame.mixer.Sound('assests/crunch.wav')
 
     def draw_snake(self):
         self.update_head_graphics()
@@ -166,8 +166,8 @@ class Main: # Donot Touch
         self.snake = Snake()
         self.food = Food(self.snake.Body)
         self.game_over_flag = False
-        self.game_music = pygame.mixer.Sound('game music.mp3')
-        self.game_over_music = pygame.mixer.Sound('game over music.wav')
+        self.game_music = pygame.mixer.Sound('assests/game music.mp3')
+        self.game_over_music = pygame.mixer.Sound('assests/game over music.wav')
         self.game_music.play(loops=-1).set_volume(0.5)
     
     def update(self):
@@ -192,9 +192,11 @@ class Main: # Donot Touch
             self.food = Food(self.snake.Body)
             self.snake.add_body()
 
+    played = False
     def check_fail(self):
         for body in self.snake.Body[1:]:
-            if body == self.snake.Body[0]:
+            if (body == self.snake.Body[0]) and (played==False):
+                played = True
                 self.game_over()
 
     def come_out_of_wall(self):
